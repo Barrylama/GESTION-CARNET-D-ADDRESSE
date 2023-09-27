@@ -73,19 +73,24 @@ const ContactsPage = ({ userId }) => {
             <th className="text-left">Adresse</th>
             <th className="text-left">Téléphone</th>
             <th className="text-left">Profession</th>
+            <th className="text-left">Actions</th>
           </tr>
         </thead>
         <tbody>
-          {filteredContacts.map((contact) => (
-            <tr key={contact.id}>
-              <td>{contact.firstName}</td>
-              <td>{contact.lastName}</td>
-              <td>{contact.email}</td>
-              <td>{contact.address}</td>
-              <td>{contact.phone}</td>
-              <td>{contact.profession}</td>
+          
+            <tr className="bg bg-gray-50" >
+              <td className="ml-2 font-semibold text-black" >Barry</td>
+              <td className="ml-2 font-semibold">Lama</td>
+              <td className="ml-2 font-semibold">Magasin</td>
+              <td className="ml-2 font-semibold">Etudiant</td>
+              <td className="ml-2 font-semibold">624219576</td>
+              <td className="ml-2 font-semibold">barrylama170@gmail.com</td>
+              <td>
+                <button>Modifier</button>
+                <button>Suppimer</button>
+              </td>
             </tr>
-          ))}
+         
         </tbody>
       </table>
     </div>

@@ -31,13 +31,26 @@ export default function LoginPage() {
     const navigate = useNavigate();
     const [login, { isLoading, isSuccess, isError, error,data }] = useLoginMutation();
     useEffect(() => {
-        if (isSuccess) {
-        localStorage.setItem("token", JSON.stringify(data));
-        navigate("/dashboard");
-        }
-    }, [isSuccess]);
+      
+
+      if (isSuccess) {
+        const { token, userId } = data; // Assurez-vous de récupérer les données correctement depuis la mutation
     
-            
+        // Stockez le token JWT dans le local storage
+        localStorage.setItem("token", token);
+    
+        // Stockez l'ID de l'utilisateur dans le local storage
+        localStorage.setItem("userId", userId);
+    
+        console.log("Token et ID d'utilisateur stockés dans le local storage.");
+        const token = localStorage.getItem("token");
+    
+        navigate("/dashboard");
+      }
+    }, [isSuccess, data]);
+    
+    
+  
 
   const onSubmit = (data) => {
     login(data);
