@@ -62,9 +62,6 @@ export default function Sidebar() {
                             {/* ... Icône Utilisateurs */}
                         </svg>
                     </MenuItem>
-
-                    <MenuItem>
-                    </MenuItem>
                 </div>
             </div>
         </div>

@@ -24,6 +24,11 @@ import {
           element: <RegisterPage />,
 
      },
+     {
+        path: "/addContact",
+        element: <AddContact />,
+
+   },
      
      {
          path: "/dashboard",

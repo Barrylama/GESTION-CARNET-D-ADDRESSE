@@ -1,46 +1,35 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import {
+  useGetContactsQuery,
+  useCreateContactMutation,
+  useDeleteContactMutation,
+  useUpdateContactMutation,
+} from "../../api/contact"; // Assurez-vous d'importer correctement votre API
 
-// Supposons que vous ayez une fonction pour récupérer les contacts de l'utilisateur connecté depuis votre API
-// Remplacez getContactsFromAPI par votre fonction réelle
-const getContactsFromAPI = async (userId) => {
-  // Faites une requête API pour obtenir les contacts de l'utilisateur avec l'ID userId
-  // Assurez-vous que votre backend renvoie les données au format JSON
-  const response = await fetch(`/api/contacts?userId=${userId}`);
-  const data = await response.json();
-  return data.contacts;
-};
+const ContactsPage = () => {
+  const { data: contacts, isLoading, isError, error } = useGetContactsQuery();
 
-const ContactsPage = ({ userId }) => {
-  const [contacts, setContacts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredContacts, setFilteredContacts] = useState([]);
 
   useEffect(() => {
-    // Chargez les contacts de l'utilisateur connecté depuis l'API
-    getContactsFromAPI(userId).then((data) => {
-      setContacts(data);
-      setFilteredContacts(data);
-    });
-  }, [userId]);
-
-  // Filtrer les contacts en fonction du terme de recherche
-  useEffect(() => {
-    const filtered = contacts.filter((contact) =>
-      contact.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredContacts(filtered);
-  }, [searchTerm, contacts]);
+    if (contacts) {
+      setFilteredContacts(contacts);
+    }
+  }, [contacts]);
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
+    const filtered = contacts.filter((contact) =>
+      `${contact.firstName} ${contact.lastName}`
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase())
+    );
+    setFilteredContacts(filtered);
   };
 
-  const handleAddContactClick = () => {
-    // Redirigez l'utilisateur vers la page d'ajout de contact
-    // Assurez-vous d'avoir défini la route appropriée dans votre application
-    // Remplacez '/add-contact' par votre route réelle
-    window.location.href = "/addContact";
-  };
+  // ... autres parties de votre composant
 
   return (
     <div className="py-10 px-10">
@@ -55,12 +44,13 @@ const ContactsPage = ({ userId }) => {
               onChange={handleSearchChange}
               className="border border-gray-300 rounded-md px-2 py-1"
             />
-            <button
-              onClick={handleAddContactClick}
-              className="bg-green-500 text-white px-4 py-2 rounded-md ml-2 text-right"
-            >
-              Ajouter un contact
-            </button>
+             <Link
+                 to="/addContact"
+                 className="bg-green-500 text-white px-4 py-2 rounded-md ml-2 text-right"
+                >
+          Ajouter un contact
+        </Link>
+
           </div>
         </div>
       </div>
@@ -77,20 +67,22 @@ const ContactsPage = ({ userId }) => {
           </tr>
         </thead>
         <tbody>
-          
-            <tr className="bg bg-gray-50" >
-              <td className="ml-2 font-semibold text-black" >Barry</td>
-              <td className="ml-2 font-semibold">Lama</td>
-              <td className="ml-2 font-semibold">Magasin</td>
-              <td className="ml-2 font-semibold">Etudiant</td>
-              <td className="ml-2 font-semibold">624219576</td>
-              <td className="ml-2 font-semibold">barrylama170@gmail.com</td>
+          {filteredContacts.map((contact) => (
+            <tr key={contact.id} className="bg bg-gray-50">
+              <td className="ml-2 font-semibold text-black">
+                {contact.firstName}
+              </td>
+              <td className="ml-2 font-semibold">{contact.lastName}</td>
+              <td className="ml-2 font-semibold">{contact.email}</td>
+              <td className="ml-2 font-semibold">{contact.address}</td>
+              <td className="ml-2 font-semibold">{contact.phone}</td>
+              <td className="ml-2 font-semibold">{contact.profession}</td>
               <td>
                 <button>Modifier</button>
-                <button>Suppimer</button>
+                <button>Supprimer</button>
               </td>
             </tr>
-         
+          ))}
         </tbody>
       </table>
     </div>
