@@ -8,6 +8,7 @@ import {
    import Home from "./features/auth/home";
    import AddContact from "./features/contact/AddContact";
    import ListContact from "./features/contact/ListContact";
+   import EditContactPage from "./features/contact/EditContact";
  
  
   export const router = createBrowserRouter([
@@ -24,6 +25,7 @@ import {
           element: <RegisterPage />,
 
      },
+  
      {
         path: "/addContact",
         element: <AddContact />,
@@ -46,6 +48,16 @@ import {
                  path: "contacts",
                  element: <ListContact />,
              },
+             {
+                path: "contacts/updateContact/:id",
+                element: <EditContactPage />,
+        
+           },
+           {
+    
+       },
+
+
              
          ]
      }

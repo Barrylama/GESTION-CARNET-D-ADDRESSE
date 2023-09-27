@@ -15,6 +15,17 @@ export const createContact = async (req, res) => {
     }
 };
 
+export const getContactById = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const contact = await Contact.findById(id);
+    res.json(contact);
+    
+  } catch (error) {
+    res.status(409).json({ message: error.message }); 
+  }
+}
+
 // controller for getting contacts by user ID
 export const getContactsByUser = async (req, res) => {
     try {

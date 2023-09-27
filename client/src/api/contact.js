@@ -12,6 +12,15 @@ export const contactApi = api.injectEndpoints({
       }),
     }),
 
+    //Endpoint pour recuperer id du contact
+    getContactById: builder.query({
+      query: (id) => ({
+        url: `contact/${id}`,
+        method: "GET",
+
+      }),
+    }),
+
     // Endpoint pour créer un nouveau contact
     createContact: builder.mutation({
       query: (body) => ({
@@ -25,8 +34,8 @@ export const contactApi = api.injectEndpoints({
 
     // Endpoint pour supprimer un contact
     deleteContact: builder.mutation({
-      query: (contactId) => ({
-        url: `contact/delete/${contactId}`,
+      query: (id) => ({
+        url: `contact/delete/${id}`,
         method: "DELETE",
       }),
       // Lorsqu'un contact est supprimé, invalider le cache des contacts pour forcer la mise à jour de la liste des contacts
@@ -35,9 +44,9 @@ export const contactApi = api.injectEndpoints({
 
     // Endpoint pour mettre à jour un contact
     updateContact: builder.mutation({
-      query: ({ contactId, updatedData }) => ({
-        url: `contact/update/${contactId}`,
-        method: "PUT",
+      query: ({ id, updatedData }) => ({
+        url: `contact/update/${id}`,
+        method: "PATCH",
         body: updatedData,
       }),
       // Lorsqu'un contact est mis à jour, invalider le cache des contacts pour forcer la mise à jour de la liste des contacts
@@ -52,4 +61,5 @@ export const {
   useCreateContactMutation,
   useDeleteContactMutation,
   useUpdateContactMutation,
+  useGetContactByIdQuery,
 } = contactApi;
