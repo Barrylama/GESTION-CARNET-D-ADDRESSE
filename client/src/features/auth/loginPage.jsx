@@ -4,6 +4,7 @@ import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useLoginMutation } from "../../api/auth";
+import { Link } from "react-router-dom";
 
 const schema = yup.object().shape({
   email: yup
@@ -84,12 +85,26 @@ export default function LoginPage() {
             {isError && (
                 <p className="text-red-500">{error.error}Identifiants invalides</p>
             )}
-          <button
-            type="submit"
-            className={`${isLoading ? 'disabled bg-green-100' : ''} bg-green-500 text-green-50 px-4 py-2 rounded-md`}
-          >
-           {isLoading ? "connexion..." : "Se connecter"}
-          </button>
+         <div className="text-center mt-4">
+  <button
+    type="submit"
+    className={`${
+      isLoading ? "disabled bg-green-100" : ""
+    } bg-green-500 text-white px-4 py-2 rounded-md transition duration-300 ease-in-out hover:bg-green-600`}
+  >
+    {isLoading ? "Connexion..." : "Se connecter"}
+  </button>
+  <p className="mt-2 text-gray-600">
+    Vous n'avez pas encore de compte?{" "}
+    <Link
+      to="/register"
+      className="text-green-500 hover:underline transition duration-300 ease-in-out"
+    >
+      Créez-en un !
+    </Link>
+  </p>
+</div>
+
         </form>
       </div>
     </div>

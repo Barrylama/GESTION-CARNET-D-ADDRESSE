@@ -9,6 +9,8 @@ import {
    import AddContact from "./features/contact/AddContact";
    import ListContact from "./features/contact/ListContact";
    import EditContactPage from "./features/contact/EditContact";
+   import Profile from "./features/auth/user";
+   import Logout from "./features/auth/deconnexion";
  
  
   export const router = createBrowserRouter([
@@ -41,8 +43,8 @@ import {
                  element: <h1>Dashboard</h1>,
              },
              {
-                 path: "users",
-                 element: <h1>Users</h1>,
+                 path: "Profile",
+                 element: <Profile />,
              },
              {
                  path: "contacts",
@@ -53,6 +55,11 @@ import {
                 element: <EditContactPage />,
         
            },
+           {
+            path: "Logout",
+            element: <Logout />,
+    
+       },
            {
     
        },

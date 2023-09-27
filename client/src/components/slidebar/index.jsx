@@ -31,7 +31,7 @@ export default function Sidebar() {
                     
                     <MenuItem
                         link="Profile"
-                        title={"Profil"}
+                        title={"Profile"}
                         activeLink={activeLink}
                         setActiveLink={setActiveLink}
                     >
@@ -39,7 +39,7 @@ export default function Sidebar() {
 
                     </MenuItem>
                     <MenuItem
-                        link="deconnexion"
+                        link="Logout"
                         title={"Deconnexion"}
                         activeLink={activeLink}
                         setActiveLink={setActiveLink}
