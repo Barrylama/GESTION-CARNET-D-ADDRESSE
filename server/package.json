@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node index.js",
+    "dev":"nodemon index.js"
   },
   "keywords": [],
   "author": "Lamarana",
@@ -17,7 +18,7 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^7.5.2",
+    "mongoose": "^4.0.0",
     "yup": "^1.3.0"
   }
 }
