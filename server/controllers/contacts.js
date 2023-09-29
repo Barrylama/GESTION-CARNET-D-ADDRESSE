@@ -2,7 +2,7 @@ import Contact from "../models/contacts.js";
 import mongoose from "mongoose";
 
 
-// controller for creating a new post
+// Controller pour creer un contact 
 export const createContact = async (req, res) => {
     const contact = req.body;
 
@@ -15,6 +15,7 @@ export const createContact = async (req, res) => {
     }
 };
 
+// Controller pour trouver un utilisteur par son id
 export const getContactById = async (req, res) => {
   const id = req.params.id;
   try {
@@ -26,7 +27,7 @@ export const getContactById = async (req, res) => {
   }
 }
 
-// controller for getting contacts by user ID
+// controller pour afficher les contacts par utilisateur
 export const getContactsByUser = async (req, res) => {
     try {
         // L'ID de l'utilisateur est extrait du token JWT dans le middleware protect
@@ -49,7 +50,7 @@ export const getContactsByUser = async (req, res) => {
 
 
 
-// controller for updating a post
+// Controller pour modifier et mettre a jour un contact
 export const updateContact = async (req, res) => {
     const { id } = req.params;
     const contact = req.body;
@@ -87,7 +88,7 @@ export const updateContact = async (req, res) => {
   };
   
 
-// controller for deleting a contact
+// Controller pour supprimer un contact 
 export const deleteContact = async (req, res) => {
     const { id } = req.params;
 
@@ -118,4 +119,21 @@ export const deleteContact = async (req, res) => {
       } catch (error) {
         res.status(500).json({ message: error.message });
       }
-}
+};
+
+// Contrôleur pour compter le nombre de contacts par utilisateur connecté
+export const countContactsByUser = async (req, res) => {
+  try {
+    // Récupérez l'ID de l'utilisateur à partir du token
+    const userId = req.user.id;
+
+    // Utilisez la méthode countDocuments de Mongoose pour compter les contacts associés à l'ID de l'utilisateur
+    const count = await Contact.countDocuments({ userId: userId });
+
+    // Répondez avec le nombre de contacts comptés
+    res.status(200).json({count});
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+

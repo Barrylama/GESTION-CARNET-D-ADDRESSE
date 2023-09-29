@@ -52,28 +52,41 @@ export const register = async (req, res) => {
   }
 };
 
-
-
 // login user
 
 export const login = async (req, res) => {
   const { email, password } = req.body;
-  // find user in db
+  // Rechercher l'utitilsateur dans la base de données
   const user = await User.findOne({ email });
   if (!user) {
     return res.status(400).json({ message: "User does not exist" });
   } else {
-    // check if password is correct
+    // Verifier si le mot pass correspond
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid credentials" });
     } else {
-      // sign jwt
+      // Signer un token 
       const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: "3h" });
-      // Store user ID in Local Storage
+      // Stocker l'utisateur et le token dans le localStorage
       res.status(200).json({ message: "Login successful", user, token });
     }
+
+    
   }
+
 };
 
+export const countUsers = async (req, res) => {
+  try {
+    // Compter le nombre total d'utilisateurs dans la base de données
+    const totalUsers = await User.countDocuments();
+
+    // Répondre avec le nombre total d'utilisateurs
+    res.status(200).json({ totalUsers });
+  } catch (error) {
+    // Gestion des erreurs
+    res.status(500).json({ message: "Une erreur s'est produite lors du comptage des utilisateurs.", error: error.message });
+  }
+};
 

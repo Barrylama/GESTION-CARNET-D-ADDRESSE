@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useLoginMutation } from "../../api/auth";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 const schema = yup.object().shape({
   email: yup
@@ -14,10 +16,6 @@ const schema = yup.object().shape({
   password: yup
     .string()
     .min(3, "Le mot de passe doit contenir au moins 8 caractères")
-    // .matches(
-    //     /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/,
-    //     "Le mot de passe doit contenir au moins une lettre majuscule, un chiffre et un symbole"
-    // )
     .required("Le mot de passe est obligatoire"),
 });
 
@@ -49,7 +47,7 @@ export default function LoginPage() {
   return (
     <div className="md:grid md:grid-cols-2 items-center w-full min-h-screen">
       <div className="pr-4 border-r-2 ma border-green-500">
-        <img className="" src="/src/assets/images/logo1.png" alt="" />
+        <img className="" src="/src/assets/images/Login.png" alt="" />
       </div>
       <div className="px-8 space-y-8">
         <h1 className="text-3xl font-bold ">Se connecter</h1>
@@ -92,7 +90,14 @@ export default function LoginPage() {
       isLoading ? "disabled bg-green-100" : ""
     } bg-green-500 text-white px-4 py-2 rounded-md transition duration-300 ease-in-out hover:bg-green-600`}
   >
-    {isLoading ? "Connexion..." : "Se connecter"}
+    {isLoading ? (
+                <>
+                  <span className="mr-2">Connexion......</span>
+                  <FontAwesomeIcon icon={faSpinner} spin />
+                </>
+              ) : (
+                'Se connecter'
+              )}
   </button>
   <p className="mt-2 text-gray-600">
     Vous n'avez pas encore de compte?{" "}

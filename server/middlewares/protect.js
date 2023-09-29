@@ -13,10 +13,10 @@ const protect = async (req, res, next) => {
       req.user = { id, email };
       next();
     } else {
-      res.status(401).json({ message: "Unauthorized" });
+      res.status(401).json({ message: "Non autorisé" });
     }
   } catch (error) {
-    res.status(401).json({ message: "Unauthorized", error: error.message });
+    res.status(401).json({ message: "Non autorisé", error: error.message });
   }
 };
 

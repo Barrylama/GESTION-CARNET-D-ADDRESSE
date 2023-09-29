@@ -17,7 +17,14 @@ export const authApi = api.injectEndpoints({
         body,
       }),
     }),
+    count: builder.query({
+      query: (body) => ({
+        url: "auth/count",
+        method: "GET",
+        body,
+      }),
+    }),
   }),
 });
 
-export const { useLoginMutation, useRegisterMutation } = authApi;
+export const { useLoginMutation, useRegisterMutation,useCountQuery } = authApi;

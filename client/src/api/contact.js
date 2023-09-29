@@ -52,6 +52,13 @@ export const contactApi = api.injectEndpoints({
       // Lorsqu'un contact est mis à jour, invalider le cache des contacts pour forcer la mise à jour de la liste des contacts
       invalidatesTags: ["contacts"],
     }),
+    countContact: builder.query({
+      query: (body) => ({
+        url: "contact/count/get",
+        method: "GET",
+      }),
+      invalidatesTags: ["contacts"],
+    }),
   }),
 });
 
@@ -62,4 +69,5 @@ export const {
   useDeleteContactMutation,
   useUpdateContactMutation,
   useGetContactByIdQuery,
+  useCountContactQuery,
 } = contactApi;

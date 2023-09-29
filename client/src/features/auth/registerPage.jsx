@@ -2,9 +2,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useRegisterMutation } from "../../api/auth"; // Assurez-vous d'avoir une mutation `useRegisterMutation` pour l'enregistrement
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 const schema = yup.object().shape({
   firstName: yup.string().required("Le prénom est obligatoire"),
   lastName: yup.string().required("Le nom de famille est obligatoire"),
@@ -14,7 +16,7 @@ const schema = yup.object().shape({
     .required("L'e-mail est obligatoire"),
   password: yup
     .string()
-    .min(8, "Le mot de passe doit contenir au moins 8 caractères")
+    .min(5, "Le mot de passe doit contenir au moins 5 caractères")
     .required("Le mot de passe est obligatoire"),
   confirmPassword: yup
     .string()
@@ -34,8 +36,8 @@ export default function RegisterPage() {
   const [registerUser, { isLoading, isSuccess, isError, error, data }] = useRegisterMutation();
   useEffect(() => {
       if (isSuccess) {
-          localStorage.setItem("token", JSON.stringify(data));
-          localStorage.setItem("id", data.id);          
+        localStorage.setItem("user", JSON.stringify(data));
+        console.log(data);        
       navigate("/dashboard");
       }
   }, [isSuccess]);
@@ -47,7 +49,7 @@ export default function RegisterPage() {
   return (
     <div className="md:grid md:grid-cols-2 items-center w-full min-h-screen">
       <div className="pr-4 border-r-2 ma border-green-500">
-        <img className="" src="/src/assets/images/logo1.png" alt="" />
+        <img className="" src="/src/assets/images/Signup.png" alt="" />
       </div>
       <div className="px-8 space-y-8">
         <h1 className="text-3xl font-bold">Créer un compte</h1>
@@ -107,8 +109,25 @@ export default function RegisterPage() {
             type="submit"
             className={`${isLoading ? 'disabled bg-green-100' : ''} bg-green-500 text-green-50 px-4 py-2 rounded-md`}
           >
-            {isLoading ? "Enregistrement en cours..." : "S'inscrire"}
+            {isLoading ? (
+                <>
+                  <span className="mr-2">Enregistrement en cours...</span>
+                  <FontAwesomeIcon icon={faSpinner} spin />
+                </>
+              ) : (
+                "S'inscrire"
+              )}
           </button>
+          <p className="mt-2 text-gray-600">
+              Vous avez déjà un compte?{" "}
+              <Link
+                  to="/login"
+                  className="text-green-500 hover:underline transition duration-300 ease-in-out"
+           >
+               Connectez-vous !
+    </Link>
+  </p>
+          
         </form>
       </div>
     </div>

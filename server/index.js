@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/auth", authRoutes);
-app.use("/contact/", contactRoutes);
+app.use("/contact", contactRoutes);
 
 mongoose
   .connect(DB_URL, {

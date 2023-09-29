@@ -11,6 +11,7 @@ import {
    import EditContactPage from "./features/contact/EditContact";
    import Profile from "./features/auth/user";
    import Logout from "./features/auth/deconnexion";
+   import DashboardComponent from "./features/auth/dashboard";
  
  
   export const router = createBrowserRouter([
@@ -40,7 +41,7 @@ import {
          children: [
              {
                  path: "",
-                 element: <h1>Dashboard</h1>,
+                 element: <DashboardComponent/>,
              },
              {
                  path: "Profile",
