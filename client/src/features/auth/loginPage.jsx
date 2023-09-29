@@ -7,6 +7,7 @@ import { useLoginMutation } from "../../api/auth";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import imageLogin from "/src/assets/images/Login.png";
 
 const schema = yup.object().shape({
   email: yup
@@ -47,7 +48,7 @@ export default function LoginPage() {
   return (
     <div className="md:grid md:grid-cols-2 items-center w-full min-h-screen">
       <div className="pr-4 border-r-2 ma border-green-500">
-        <img className="" src="/src/assets/images/Login.png" alt="" />
+        <img className="" src={imageLogin} alt="" />
       </div>
       <div className="px-8 space-y-8">
         <h1 className="text-3xl font-bold ">Se connecter</h1>
