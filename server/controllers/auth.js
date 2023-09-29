@@ -1,5 +1,4 @@
 import User from "../models/user.js";
-import Yup from "Yup";
 
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -8,18 +7,7 @@ import jwt from "jsonwebtoken";
 
 export const register = async (req, res) => {
   const { lastName, firstName, email, password } = req.body;
-
-  // Validation des données de l'utilisateur avec Yup (exigences de validation)
-  const userSchema = Yup.object().shape({
-      lastName: Yup.string().required(),
-      firstName: Yup.string().required(),
-      email: Yup.string().email().required(),
-      password: Yup.string().min(3).required(), // Exemple : mot de passe d'au moins 3 caractères
-  });
-
   try {
-      // Valider les données de l'utilisateur
-      await userSchema.validate(req.body);
 
       // Vérifier si l'utilisateur existe déjà
       const userExists = await User.findOne({ email });
