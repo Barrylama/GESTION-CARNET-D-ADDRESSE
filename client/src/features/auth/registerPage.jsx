@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useRegisterMutation } from "../../api/auth"; // Assurez-vous d'avoir une mutation `useRegisterMutation` pour l'enregistrement
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import imageRegister from "/src/assets/images/Signup.png";
 const schema = yup.object().shape({
   firstName: yup.string().required("Le prénom est obligatoire"),
   lastName: yup.string().required("Le nom de famille est obligatoire"),
@@ -49,7 +50,7 @@ export default function RegisterPage() {
   return (
     <div className="md:grid md:grid-cols-2 items-center w-full min-h-screen">
       <div className="pr-4 border-r-2 ma border-green-500">
-        <img className="" src="/src/assets/images/Signup.png" alt="" />
+        <img className="" src={imageRegister} alt="" />
       </div>
       <div className="px-8 space-y-8">
         <h1 className="text-3xl font-bold">Créer un compte</h1>

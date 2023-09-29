@@ -4,6 +4,7 @@ import { useCountContactQuery } from "../../api/contact";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner, faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 
+
 function Dashboard() {
   const { data, isLoading, isError } = useCountQuery();
   const { data: dataCount, isLoading: isLoadingCount, isError: isErrorCount } = useCountContactQuery();

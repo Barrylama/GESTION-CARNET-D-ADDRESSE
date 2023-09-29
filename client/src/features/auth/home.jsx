@@ -1,6 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import imageAccueil from "/src/assets/images/home.png";
+import imageOrange from "/src/assets/images/logo-orange.png";
+import imageODC from "/src/assets/images/odc.webp" ;
+import imgageMembre1 from "/src/assets/images/lama.jpg" ; 
+import imgageMembre2 from "/src/assets/images/cherif.jpg" ;
+import imageMembre3 from "/src/assets/images/mamadou.jpg";
+import imageMembre4 from "/src/assets/images/souleymane.jpg" ;
+import imageProf from "/src/assets/images/prof.jpeg";
+
 export default function WelcomePage() {
   return (
     <div className="flex flex-col h-screen">
@@ -25,7 +34,7 @@ export default function WelcomePage() {
         <div className="w-5/6">
           {/* Ajoutez ici votre image d'illustration */}
           <img
-            src="/src/assets/images/home.png"
+            src={imageAccueil}
             alt="Illustration"
             className="w-full"
           />
@@ -37,12 +46,12 @@ export default function WelcomePage() {
   <div className="w-1/2 flex justify-center items-center">
     {/* Logo d'Orange Digital Center */}
     <img
-      src="/src/assets/images/logo-orange.png"
+      src={imageOrange}
       alt="Logo Orange Digital Center"
       className="w-60 h-auto mr-5"
     />
     <img
-      src="/src/assets/images/odc.webp"
+      src={imageODC}
       alt="Logo Orange Digital Center"
       className="w-80 h-auto"
     />
@@ -73,7 +82,7 @@ export default function WelcomePage() {
           {/* Membre 1 */}
           <div className="bg-white p-2 rounded-lg shadow-md mx-4">
             <img
-              src="/src/assets/images/lama.jpg"
+              src={imgageMembre1}
               alt="Membre 1"
               className="w-60 h-100 rounded-full mb-4 mx-auto"
             />
@@ -84,7 +93,7 @@ export default function WelcomePage() {
 
           <div className="bg-white p-2 rounded-lg shadow-md mx-4">
             <img
-              src="/src/assets/images/cherif.jpg"
+              src={imgageMembre2}
               alt="Membre 1"
               className="w-60 h-80 rounded-full mb-4 mx-auto"
             />
@@ -95,7 +104,7 @@ export default function WelcomePage() {
           {/* Membre 2 */}
           <div className="bg-white p-2 rounded-lg shadow-md mx-4">
             <img
-              src="/src/assets/images/mamadou.jpg"
+              src={imageMembre3}
               alt="Membre 1"
               className="w-60 h-80 rounded-full mb-4 mx-auto"
             />
@@ -109,7 +118,7 @@ export default function WelcomePage() {
           {/* Membre 4 */}
           <div className="bg-white p-2 rounded-lg shadow-md mx-4">
             <img
-              src="/src/assets/images/souleymane.jpg"
+              src={imageMembre4}
               alt="Membre 1"
               className="w-60 h-80 rounded-full mb-4 mx-auto"
             />
@@ -124,7 +133,7 @@ export default function WelcomePage() {
       <section className="bg-gray-200 py-16 flex">
         <div className="w-1/2 flex justify-center items-center">
           <img
-            src="/src/assets/images/prof.jpeg"
+            src={imageProf}
             alt="Professeur"
             className="w-100 h-100 rounded-full mb-4 mr-0"
           />
