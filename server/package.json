@@ -1,7 +1,7 @@
 {
   "name": "server",
-  "version": "1.0.0",
-  "description": "this is a web app for management pharmacy",
+  "version": "14.17.0",
+  "description": "this is a web app for management contacts",
   "main": "index.js",
   "type": "module",
   "scripts": {
