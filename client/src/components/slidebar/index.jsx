@@ -60,7 +60,7 @@ const MenuItem = ({ title, link, children, activeLink, setActiveLink }) => {
         <Link to={link} onClick={() => setActiveLink(link)}>
             <div
                 className={`flex items-center space-x-2 py-2 px-2 hover:bg-white rounded-md hover:text-green-500 text-white cursor-pointer ${
-                    isActive ? "bg-white rounded-md text-green-700" : ""
+                    isActive ? "bg-white rounded-md text-green-800" : ""
                 }`}
             >
                 <div className="w-6 h-6 rounded-full">{children}</div>
