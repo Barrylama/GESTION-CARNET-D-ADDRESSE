@@ -3,6 +3,7 @@ import { useCountQuery } from "../../api/auth";
 import { useCountContactQuery } from "../../api/contact";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner, faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
+import imageIL from "/src/assets/images/stats1.png";
 
 
 function Dashboard() {
@@ -57,7 +58,7 @@ function Dashboard() {
         </div>
         <div className="w-1/2 mr-5">
           <img
-            src="/src/assets/images/stats1.png"
+            src={imageIL}
             alt="Illustration 1"
             className="w-full h-auto rounded-md"
           />
